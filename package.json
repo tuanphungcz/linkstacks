@@ -1,7 +1,7 @@
 {
-  "description": "A simple todos app powered by Stacks.js",
+  "description": "An open source about.me like application built using Next.js 13 and Stacks.js.",
   "repository": "https://github.com/tuanphungcz/linkstacks",
-  "homepage": "https://blogfolio.co",
+  "homepage": "https://linkstacks.vercel.app",
   "author": "Tuan Phung <tuan@phung.cz> (https://github.com/tuanphungcz)",
   "contributors": [
     "Tuan Phung <tuan@phung.cz> (https://github.com/tuanphungcz)",

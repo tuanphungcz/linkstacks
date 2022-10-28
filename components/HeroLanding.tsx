@@ -2,12 +2,13 @@ import { IconBrandGithub, IconExternalLink } from '@tabler/icons';
 import { authenticate, userSession } from 'lib/auth';
 import Link from 'next/link';
 import { PrimaryButton, SecondaryButton } from './base/Button';
+import Container from './base/Container';
 import NewTabLink from './base/NewTabLink';
 import AppNavbar from './Navbar';
 
 export default function HeroLanding() {
   return (
-    <div className="flex-shrink-0 order-3 w-full mt-2 sm:order-2 sm:mt-0 sm:w-auto bg-white h-screen">
+    <div className="flex-shrink-0 order-3 w-full mt-2 sm:order-2 sm:mt-0 sm:w-auto bg-white">
       <AppNavbar />
       <div className="sm:max-w-xl mt-20 mb-10 text-center mx-auto sm:px-0 px-2.5">
         <div className="flex items-center justify-center mx-auto">
@@ -50,7 +51,7 @@ export default function HeroLanding() {
           <NewTabLink href={window.location.origin + '/phung.btc'}>
             <SecondaryButton>
               <div className="flex items-center space-x-2">
-                <div>Demo blog</div>
+                <div>Demo profile</div>
                 <IconExternalLink className="w-5" />
               </div>
               <div className="absolute top-0 flex w-3 h-3 -mt-1 -mr-1 -right-1">
@@ -62,9 +63,11 @@ export default function HeroLanding() {
         </div>
       </div>
 
-      {/* <div className="max-w-3xl mx-auto mt-16">
-        <img src="/preview/4.jpg" className="rounded-xl" alt="hero" />
-      </div> */}
+      <div className='px-4 md:px-8 max-w-7xl mx-auto pb-32'>
+        <div className="mt-24">
+          <img src="/preview.png" className="rounded-xl" alt="hero" />
+        </div>
+      </div>
     </div>
   );
 }

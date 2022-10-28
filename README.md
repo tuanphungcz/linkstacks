@@ -1,6 +1,6 @@
 # [Linkstacks](https://linkstacks.vercel.app/)
 
-An open source About.me-like application built using Next.js 13 and Stacks.js.
+An open source about.me like application built using Next.js 13 and Stacks.js.
 
 > **Warning**
 > To make your public profile work you need to own a BNS (Blockstack Name Service) name. You can get one from [Btc.us](https://btc.us/).
