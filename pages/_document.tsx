@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>Linkstacks</title>
         <meta name="robots" content="follow, index" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
