@@ -23,7 +23,12 @@ export default function AppNavbar() {
             {userData ? (
               <Dropdown />
             ) : (
-              <PrimaryButton onClick={authenticate}>Sign in</PrimaryButton>
+              <PrimaryButton onClick={authenticate}>
+                <div className="flex space-x-2 items-center">
+                  <img src="/hiro.jpg" className="h-5 w-6" />
+                  <div>Authenticate</div>
+                </div>
+              </PrimaryButton>
             )}
           </div>
         </div>

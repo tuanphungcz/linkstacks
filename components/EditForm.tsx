@@ -69,7 +69,7 @@ export default function EditForm() {
   return (
     <>
       <AppNavbar />
-      <div className=" max-w-2xl mx-auto space-y-8 pt-16">
+      <div className=" max-w-2xl mx-auto space-y-8 pt-16 mb-32">
         <div className="mx-auto">
           <div className="text-lg font-medium leading-6 text-gray-900 flex space-x-2">
             <div>Profile Preview</div>

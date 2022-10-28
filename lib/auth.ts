@@ -9,10 +9,10 @@ export const userSession = new UserSession({ appConfig });
 export function authenticate() {
   showConnect({
     appDetails: {
-      name: 'Todos',
-      icon: window.location.origin + '/logo.svg'
+      name: 'linkstacks.vercel.app',
+      icon: window.location.origin + '/hiro.jpg'
     },
-    redirectTo: '/',
+    redirectTo: '/edit',
     onFinish: () => {
       window.location.reload();
     },

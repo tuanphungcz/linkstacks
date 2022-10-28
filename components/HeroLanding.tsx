@@ -26,20 +26,25 @@ export default function HeroLanding() {
           Decentralized
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500">
-            Stacks Profile Card
+            Stacks Profile cards
           </span>
         </h1>
         <p className="mt-5 text-2xl text-gray-600">
-          Create your own decentralized profile on Stacks blockchain.
+          Create your own decentralized profile on Stacks blockchain with Gaia
         </p>
         <div className="flex mx-auto mt-10 space-x-4 max-w-fit">
           {/* <SignInButton /> */}
           {userSession.isUserSignedIn() ? (
             <Link href="/edit">
-              <PrimaryButton>Get Started</PrimaryButton>
+              <PrimaryButton>My profile</PrimaryButton>
             </Link>
           ) : (
-            <PrimaryButton onClick={authenticate}>Sign in</PrimaryButton>
+            <PrimaryButton onClick={authenticate}>
+              <div className="flex space-x-2 items-center">
+                <img src="/hiro.jpg" className="h-5 w-6" />
+                <div>Authenticate</div>
+              </div>
+            </PrimaryButton>
           )}
 
           <NewTabLink href={window.location.origin + '/phung.btc'}>
