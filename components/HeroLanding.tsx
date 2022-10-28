@@ -8,7 +8,7 @@ import AppNavbar from './Navbar';
 
 export default function HeroLanding() {
   return (
-    <div className="flex-shrink-0 order-3 w-full mt-2 sm:order-2 sm:mt-0 sm:w-auto bg-white">
+    <div className="flex-shrink-0 order-3 w-full mt-2 sm:order-2 sm:mt-0 sm:w-auto bg-white min-h-screen">
       <AppNavbar />
       <div className="sm:max-w-xl mt-20 mb-10 text-center mx-auto sm:px-0 px-2.5">
         <div className="flex items-center justify-center mx-auto">

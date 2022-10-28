@@ -8,6 +8,7 @@ import { fetchTasks, saveTasks } from 'lib/storage';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import Container from './base/Container';
 import NewTabLink from './base/NewTabLink';
 import ConfettiCanvas from './ConfettiCanvas';
 import AppNavbar from './Navbar';
@@ -69,71 +70,74 @@ export default function EditForm() {
   return (
     <>
       <AppNavbar />
-      <div className=" max-w-2xl mx-auto space-y-8 pt-16 mb-32">
-        <div className="mx-auto">
-          <div className="text-lg font-medium leading-6 text-gray-900 flex space-x-2">
-            <div>Profile Preview</div>
-            <NewTabLink href={url}>
-              <IconExternalLink />
-            </NewTabLink>
+      <Container small>
+        <div className=" space-y-8 pt-16 mb-32">
+          <div className="mx-auto">
+            <div className="text-lg font-medium leading-6 text-gray-900 flex space-x-2">
+              <div>Profile preview</div>
+              <NewTabLink href={url}>
+                <IconExternalLink />
+              </NewTabLink>
+            </div>
+            <div className="mt-2 text-sm text-gray-500">
+              This is how your profile will look like to others. You need to have an BNS
+              name to use the public profile
+            </div>
           </div>
-          <div className="mt-2 text-sm text-gray-500">
-            This is the settings for the website. You can edit it in JSON format.
-          </div>
+          {watchedValues && <ProfileCard profile={watchedValues} />}
+
+          <form onSubmit={handleSubmit(submit)} className="w-full space-y-8">
+            <Card className="bg-white sm:rounded">
+              <div className="p-8 border-b md:col-span-1">
+                <div className="text-lg font-medium leading-6 text-gray-900">
+                  Profile Information
+                </div>
+                <div className="mt-2 text-sm text-gray-500">
+                  This information will be displayed publicly
+                </div>
+              </div>
+              <div className="p-8 mt-5 border-b md:mt-0 md:col-span-2 grid grid-1 grid-cols-2 gap-4">
+                {defaultBaseInputs.map((input: any) => (
+                  <input.component
+                    {...input}
+                    name={input.id}
+                    register={register}
+                    control={control}
+                    key={input.id}
+                    error={formState?.errors[input.id]}
+                  />
+                ))}
+              </div>
+              <div className="p-8 border-b md:col-span-1">
+                <h3 className="text-lg font-medium leading-6 text-gray-900">
+                  Social links
+                </h3>
+                <p className="mt-2 text-sm text-gray-500">
+                  You can add socials like LinkedIn, Github, Twitter, and your personal
+                  website
+                </p>
+              </div>
+              <div className="p-8 mt-5 border-b md:mt-0 md:col-span-2 grid grid-1 grid-cols-2 gap-4">
+                {socialsInputs.map((input: any) => (
+                  <input.component
+                    {...input}
+                    name={input.id}
+                    register={register}
+                    control={control}
+                    key={input.id}
+                    error={formState?.errors[input.id]}
+                  />
+                ))}
+              </div>
+
+              <div className="flex justify-end p-8 space-x-4">
+                <ConfettiCanvas getInstance={getInstance} />
+                <PrimaryButton type="submit">Update profile</PrimaryButton>
+              </div>
+            </Card>
+          </form>
         </div>
-        {watchedValues && <ProfileCard profile={watchedValues} />}
-
-        <form onSubmit={handleSubmit(submit)} className="w-full space-y-8">
-          <Card className="bg-white sm:rounded">
-            <div className="p-8 border-b md:col-span-1">
-              <div className="text-lg font-medium leading-6 text-gray-900">
-                Profile Information
-              </div>
-              <div className="mt-2 text-sm text-gray-500">
-                This information will be displayed publicly
-              </div>
-            </div>
-            <div className="p-8 mt-5 border-b md:mt-0 md:col-span-2 grid grid-1 grid-cols-2 gap-4">
-              {defaultBaseInputs.map((input: any) => (
-                <input.component
-                  {...input}
-                  name={input.id}
-                  register={register}
-                  control={control}
-                  key={input.id}
-                  error={formState?.errors[input.id]}
-                />
-              ))}
-            </div>
-            <div className="p-8 border-b md:col-span-1">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
-                Social links
-              </h3>
-              <p className="mt-2 text-sm text-gray-500">
-                You can add socials like LinkedIn, Github, Twitter, and your personal
-                website
-              </p>
-            </div>
-            <div className="p-8 mt-5 border-b md:mt-0 md:col-span-2 grid grid-1 grid-cols-2 gap-4">
-              {socialsInputs.map((input: any) => (
-                <input.component
-                  {...input}
-                  name={input.id}
-                  register={register}
-                  control={control}
-                  key={input.id}
-                  error={formState?.errors[input.id]}
-                />
-              ))}
-            </div>
-
-            <div className="flex justify-end p-8 space-x-4">
-              <ConfettiCanvas getInstance={getInstance} />
-              <PrimaryButton type="submit">Update profile</PrimaryButton>
-            </div>
-          </Card>
-        </form>
-      </div>
+      </Container>
     </>
   );
 }
