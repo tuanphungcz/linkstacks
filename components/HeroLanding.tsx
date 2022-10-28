@@ -27,7 +27,7 @@ export default function HeroLanding() {
           Decentralized
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500">
-            Stacks Profile cards
+            Stacks profiles
           </span>
         </h1>
         <p className="mt-5 text-2xl text-gray-600">

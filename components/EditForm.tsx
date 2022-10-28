@@ -96,7 +96,7 @@ export default function EditForm() {
                   This information will be displayed publicly
                 </div>
               </div>
-              <div className="p-8 mt-5 border-b md:mt-0 md:col-span-2 grid grid-1 grid-cols-2 gap-4">
+              <div className="p-8 mt-5 border-b md:mt-0 md:col-span-2 grid grid-1 sm:grid-cols-2 gap-4">
                 {defaultBaseInputs.map((input: any) => (
                   <input.component
                     {...input}
@@ -117,7 +117,7 @@ export default function EditForm() {
                   website
                 </p>
               </div>
-              <div className="p-8 mt-5 border-b md:mt-0 md:col-span-2 grid grid-1 grid-cols-2 gap-4">
+              <div className="p-8 mt-5 border-b md:mt-0 md:col-span-2 grid grid-1 sm:grid-cols-2 gap-4">
                 {socialsInputs.map((input: any) => (
                   <input.component
                     {...input}
