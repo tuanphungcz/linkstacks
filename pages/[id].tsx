@@ -14,6 +14,7 @@ export default function Stacks() {
 
   useEffect(() => {
     if (id?.length > 0 && !profile) {
+      console.log('fetching profile', id);
       const bns = id.includes('.btc') ? id : id + '.btc';
       fetchTasks(bns).then(({ profile }: any) => {
         console.log(profile);
