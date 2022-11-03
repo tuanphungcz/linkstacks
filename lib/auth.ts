@@ -2,7 +2,12 @@ import { StacksMainnet } from '@stacks/network';
 import { AppConfig, UserSession, showConnect } from '@stacks/connect';
 import { Person } from '@stacks/profile';
 
-const appConfig = new AppConfig(['store_write', 'publish_data']);
+const appConfig = new AppConfig(
+  ['store_write', 'publish_data'],
+  'https://linkstacks.vercel.app'
+);
+
+console.log('appConfig', appConfig);
 
 export const userSession = new UserSession({ appConfig });
 

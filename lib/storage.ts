@@ -2,6 +2,7 @@ import { userSession } from './auth';
 import { Storage } from '@stacks/storage';
 
 const storage = new Storage({ userSession });
+
 const PROFILE_FILENAME = 'profile.json';
 
 /**
@@ -29,17 +30,36 @@ export const saveTasks = async profile => {
 
 export const fetchTasks = async (username: any) => {
   console.log('fetch username', username);
+
+  // const files: Promise<string | undefined | ArrayBuffer | null>[] = [];
+
+  // const options = { decrypt: false, app: 'https://linkstacks.vercel.app' };
+  // await storage.listFiles((filename: string) => {
+  //   if (filename) {
+  //     console.log('filename', filename);
+  //     files.push(storage.getFile(filename, options));
+  //     // return false to stop iterating through files
+  //     return false;
+  //   } else {
+  //     // return true to continue iterating
+  //     return true;
+  //   }
+  // });
+  // const fileContents = await Promise.all(files);
+
+  // console.log('daaaaaaa fileContents:', fileContents);
   try {
     /** @type {string} raw JSON stored in Gaia */
     const tasksJSON: any = await storage.getFile(PROFILE_FILENAME, {
       decrypt: false,
-      username: username || undefined
+      username: username || undefined,
+      app: 'https://linkstacks.vercel.app',
+      verify: false
     });
-
-    console.log('tasksJSON', tasksJSON);
 
     if (tasksJSON) {
       const json = JSON.parse(tasksJSON);
+      console.log('tasksJSON', json);
       return {
         profile: json.profile
       };

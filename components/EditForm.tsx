@@ -43,13 +43,7 @@ export default function EditForm() {
     fire();
   };
 
-  useEffect(() => {
-    fetchTasks(null).then(data => {
-      console.log('fetch data', data);
-      setProfile(data.profile);
-      reset(data.profile);
-    });
-  }, [reset]);
+  useEffect(() => {}, [reset]);
 
   useEffect(() => {
     const { profile } = userSession.loadUserData();
@@ -58,8 +52,14 @@ export default function EditForm() {
 
     fetchFirstName(address, network).then(data => {
       setUrl(window.location.origin + '/' + data);
+
+      fetchTasks(data || null).then(data => {
+        console.log('fetch data', data);
+        setProfile(data.profile);
+        reset(data.profile);
+      });
     });
-  }, []);
+  }, [reset]);
 
   if (!userSession.isUserSignedIn()) {
     return null;
