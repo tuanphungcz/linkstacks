@@ -14,12 +14,12 @@ import { PrimaryButton } from 'components/base/Button';
 import { Input, TextArea } from 'components/base/Form';
 import NewTabLink from 'components/base/NewTabLink';
 import Container from 'components/base/Container';
-import { userSession, truncateUrl, useInterval } from 'lib';
+import { userSession, truncateUrl, useInterval, mapResultsFromTx } from 'lib';
 import { IconExternalLink } from '@tabler/icons';
 import toast from 'react-hot-toast';
 import AppNavbar from 'components/AppNavbar';
 
-const ONE_MILION = 1000000;
+const ONE_MILLION = 1000000;
 
 const coffeeContractAddress = 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM';
 
@@ -44,18 +44,55 @@ export default function Coffee() {
   const handleNameChange = e => setName(e.target.value);
   const handlePriceChange = e => setPrice(e.target.value);
 
+  // https://docs.hiro.so/api#tag/Accounts/operation/get_account_transactions
+
+  const getMessage = async () => {
+    const res = await fetch(
+      `${network.coreApiUrl}/extended/v1/address/${coffeeContractAddress}.coffee/transactions`
+    );
+    const result = await res.json();
+    console.log('fetching transactions ...');
+
+    const mappedTxs = mapResultsFromTx(result.results);
+    console.log(result.results);
+    console.log(`fetched ${result.results.length} transactions`);
+    console.log(`mapped ${mappedTxs.length} transactions`);
+    setTxs(mappedTxs);
+
+
+    const userAddress = userSession.loadUserData().profile.stxAddress.testnet;
+
+    const counter: any = await callReadOnlyFunction({
+      contractAddress: coffeeContractAddress,
+      contractName: 'coffee',
+      functionName: 'get-index',
+      network,
+      functionArgs: [],
+      senderAddress: coffeeContractAddress
+    });
+
+    const parsedValue = parseInt(counter?.value?.value);
+    setSupporters(parsedValue);
+  };
+
+  useEffect(() => {
+    getMessage();
+  }, []);
+
+  useInterval(getMessage, 60 * 1000);
+
   const handleSubmit = async e => {
     e.preventDefault();
 
     const functionArgs = [
       stringUtf8CV(message),
       stringUtf8CV(name),
-      uintCV(price * ONE_MILION)
+      uintCV(price * ONE_MILLION)
     ];
 
     const postConditionAddress = userSession.loadUserData().profile.stxAddress.testnet;
     const postConditionCode = FungibleConditionCode.LessEqual;
-    const postConditionAmount = price * ONE_MILION;
+    const postConditionAmount = price * ONE_MILLION;
     const postConditions = [
       makeStandardSTXPostCondition(
         postConditionAddress,
@@ -91,46 +128,6 @@ export default function Coffee() {
 
     await openContractCall(options);
   };
-
-  // https://docs.hiro.so/api#tag/Accounts/operation/get_account_transactions
-
-  const getMessage = async () => {
-    const res = await fetch(
-      `${network.coreApiUrl}/extended/v1/address/${coffeeContractAddress}.coffee/transactions`
-    );
-
-    console.log('fetching transactions ...');
-
-    const result = await res.json();
-
-    const mappedTxs = mapResultsFromTx(result.results);
-    console.log(result.results);
-    console.log(`fetched ${result.results.length} transactions`);
-    setTxs(mappedTxs);
-
-    console.log(`mapped ${mappedTxs.length} transactions`);
-
-    const userAddress = userSession.loadUserData().profile.stxAddress.testnet;
-
-    const counter: any = await callReadOnlyFunction({
-      contractAddress: coffeeContractAddress,
-      contractName: 'coffee',
-      functionName: 'get-index',
-      network,
-      functionArgs: [],
-      senderAddress: userAddress
-    });
-
-    const parsedValue = parseInt(counter?.value?.value);
-
-    setSupporters(parsedValue);
-  };
-
-  useEffect(() => {
-    getMessage();
-  }, []);
-
-  useInterval(getMessage, 60 * 1000);
 
   return (
     <>
@@ -275,29 +272,3 @@ const appDetails = {
   name: 'Buy me a Coffee',
   icon: 'https://assets.website-files.com/618b0aafa4afde65f2fe38fe/618b0aafa4afde2ae1fe3a1f_icon-isotipo.svg'
 };
-
-const mapResultsFromTx = results =>
-  results
-    .filter(
-      tx =>
-        tx.tx_type === 'contract_call' &&
-        tx.contract_call.function_name === 'buy-coffee' &&
-        tx.tx_status === 'success'
-    )
-    .map(tx => {
-      const { function_args } = tx.contract_call;
-      const name = function_args?.[1].repr.replace(`u"`, '').slice(0, -1);
-      const amount = function_args?.[2].repr.replace(`u`, '');
-      const message = function_args?.[0].repr.replace(`u"`, '').slice(0, -1);
-
-      return {
-        id: tx.tx_id,
-        timestamp: tx.burn_block_time,
-        name,
-        amount: amount / ONE_MILION,
-        message,
-        senderAddress: tx.sender_address,
-        txStatus: tx.tx_status
-      };
-    })
-    .reverse();
