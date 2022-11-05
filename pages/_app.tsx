@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: any) {
   return (
     <>
       <Head>
-        <title>Linkstacks</title>
+        <title>BuyMeAStackCoffee</title>
 
         {typeof window !== 'undefined' &&
           process.env.NODE_ENV === 'production' &&

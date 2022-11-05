@@ -2,16 +2,9 @@ import { Fragment, useState } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import classnames from 'classnames';
 import { IconChevronDown } from '@tabler/icons';
-import { fetchFirstName, network, userSession } from 'lib/auth';
+import { fetchFirstName, network, userSession, truncateUrl } from 'lib';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-const truncateUrl = (url: string) => {
-  if (url.length > 6) {
-    return url.slice(0, 3) + '...' + url.slice(-3);
-  }
-  return url;
-};
 
 export default function Dropdown() {
   const { push } = useRouter();
@@ -27,9 +20,9 @@ export default function Dropdown() {
 
   return (
     <Menu as="div" className="relative inline-block text-left z-[50]">
-      <Menu.Button className="inline-flex justify-center items-centerw-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50">
+      <Menu.Button className="inline-flex justify-center items-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50">
         <div>{bns || truncateUrl(address) || 'Menu'}</div>
-        <IconChevronDown className="w-5 h-5 ml-2 -mr-1 mt-0.5" aria-hidden="true" />
+        <IconChevronDown className="w-5 h-5 ml-2 -mr-1" aria-hidden="true" />
       </Menu.Button>
 
       <Transition

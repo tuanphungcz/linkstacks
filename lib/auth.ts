@@ -19,9 +19,9 @@ export function authenticate() {
     },
     redirectTo: '/edit',
     onFinish: () => {
-      window.location.href = '/edit';
+      window.location.reload();
     },
-    userSession: userSession
+    userSession
   });
 }
 

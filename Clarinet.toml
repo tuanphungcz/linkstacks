@@ -1,0 +1,17 @@
+[project]
+name = "contracts"
+authors = []
+description = ""
+telemetry = true
+requirements = []
+analysis = ["check_checker"]
+costs_version = 2
+[contracts.coffee]
+path = "contracts/coffee.clar"
+depends_on = []
+cache_dir = "./.cache"
+
+
+[repl.analysis]
+passes = ["check_checker"]
+check_checker = { trusted_sender = false, trusted_caller = false, callee_filter = false }

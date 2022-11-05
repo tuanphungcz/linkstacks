@@ -29,6 +29,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.3",
     "@stacks/connect": "^7.0.0",
+    "@stacks/connect-react": "^20.0.0",
     "@stacks/network": "^5.0.0",
     "@stacks/profile": "^5.0.2",
     "@stacks/storage": "^5.0.2",
