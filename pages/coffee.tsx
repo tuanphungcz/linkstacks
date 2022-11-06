@@ -203,8 +203,7 @@ export default function Coffee() {
               <div className="p-8 items-center text-center mx-auto w-full">
                 <div className="flex justify-between">
                   <div className="font-semibold text-lg mb-4 text-left">
-                    Buy <span className="font-bold text-blue-500">Tuan</span> a stack
-                    coffee
+                    Buy <span className="font-bold text-blue-500">Tuan</span> a coffee with Ӿ
                   </div>
 
                   <div>

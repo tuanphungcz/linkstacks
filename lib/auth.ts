@@ -4,7 +4,7 @@ import { Person } from '@stacks/profile';
 
 const appConfig = new AppConfig(
   ['store_write', 'publish_data'],
-  'https://linkstacks.vercel.app'
+  'https://linkstacks.xyz',
 );
 
 console.log('appConfig', appConfig);
@@ -14,7 +14,7 @@ export const userSession = new UserSession({ appConfig });
 export function authenticate() {
   showConnect({
     appDetails: {
-      name: 'linkstacks.vercel.app',
+      name: 'linkstacks.xyz',
       icon: window.location.origin + '/hiro.jpg'
     },
     redirectTo: '/edit',

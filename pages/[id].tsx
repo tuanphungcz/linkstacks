@@ -1,7 +1,7 @@
 import Container from 'components/base/Container';
 import NewTabLink from 'components/base/NewTabLink';
 import ProfileCard from 'components/ProfileCard';
-import { fetchTasks } from 'lib/storage';
+import { fetchProfile } from 'lib/storage';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -17,7 +17,7 @@ export default function Stacks() {
       console.log('fetching profile', id);
 
       const bns = id.includes('.btc') ? id : id + '.btc';
-      fetchTasks(bns).then(({ profile }: any) => {
+      fetchProfile(bns).then(({ profile }: any) => {
         console.log(profile);
         setProfile(profile);
       });

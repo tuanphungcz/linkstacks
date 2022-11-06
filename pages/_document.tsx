@@ -10,14 +10,14 @@ export default function Document() {
           name="description"
           content="An open source about.me like application built using Next.js 13 and Stacks.js."
         />
-        <meta property="og:url" content="https://linkstacks.vercel.app" key="ogurl" />
+        <meta property="og:url" content="https://linkstacks.xyz" key="ogurl" />
         <meta
           property="og:image"
-          content="https://linkstacks.vercel.app/preview.png"
+          content="https://linkstacks.xyz/preview.png"
           key="ogimage"
         />
         <meta property="og:site_name" content="Linkstacks" key="ogsitename" />
-        <meta property="og:title" content="Linkstacks.verlce.app" key="ogtitle" />
+        <meta property="og:title" content="Linkstacks.xyz" key="ogtitle" />
         <meta
           property="og:description"
           content="An open source about.me like application built using Next.js 13 and Stacks.js."
@@ -25,12 +25,15 @@ export default function Document() {
         />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="linkstacks.vercel.app" />
-        <meta name="twitter:title" content="linkstacks.vercel.app" />
-        <meta name="twitter:description" content="An open source about.me like application built using Next.js 13 and Stacks.js." />
+        <meta name="twitter:site" content="linkstacks.xyz" />
+        <meta name="twitter:title" content="linkstacks.xyz" />
+        <meta
+          name="twitter:description"
+          content="An open source about.me like application built using Next.js 13 and Stacks.js."
+        />
         <meta name="twitter:creator" content="@Gr8087" />
-        <meta property="og:url" content='https://linkstacks.vercel.app' />
-        <meta name="twitter:image" content="https://linkstacks.vercel.app/preview.png" />
+        <meta property="og:url" content="https://linkstacks.xyz" />
+        <meta name="twitter:image" content="https://linkstacks.xyz/preview.png" />
       </Head>
 
       <body>

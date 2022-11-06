@@ -4,7 +4,7 @@ import Card from 'components/base/Card';
 import { Input, TextArea } from 'components/base/Form';
 import { useConfetti } from 'hooks/useConfetti';
 import { fetchFirstName, network, userSession } from 'lib/auth';
-import { fetchTasks, saveTasks } from 'lib/storage';
+import { fetchProfile, saveProfile } from 'lib/storage';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -37,7 +37,7 @@ export default function EditForm() {
   });
 
   const submit = async values => {
-    const res = await saveTasks(values);
+    const res = await saveProfile(values);
     console.log('success', res);
     toast.success('Profile saved successfully');
     fire();
@@ -53,7 +53,7 @@ export default function EditForm() {
     fetchFirstName(address, network).then(data => {
       setUrl(window.location.origin + '/' + data);
 
-      fetchTasks(data || null).then(data => {
+      fetchProfile(data || null).then(data => {
         console.log('fetch data', data);
         setProfile(data.profile);
         reset(data.profile);
@@ -70,7 +70,7 @@ export default function EditForm() {
   return (
     <>
       <AppNavbar />
-      <Container >
+      <Container>
         <div className=" space-y-8 pt-16 mb-32">
           <div className="mx-auto">
             <div className="text-lg font-medium leading-6 text-gray-900 flex space-x-2">
