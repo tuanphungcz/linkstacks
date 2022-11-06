@@ -41,19 +41,17 @@ export default function Coffee() {
   const handleNameChange = e => setName(e.target.value);
   const handlePriceChange = e => setPrice(e.target.value);
 
-  // https://docs.hiro.so/api#tag/Accounts/operation/get_account_transactions
-
   const getCoffeeMessages = async () => {
+    // https://docs.hiro.so/api#tag/Accounts/operation/get_account_transactions
+    console.log('fetching transactions ...');
     const res = await fetch(
       `${network.coreApiUrl}/extended/v1/address/${contractAddress}.coffee/transactions`
     );
     const result = await res.json();
-    console.log('fetching transactions ...');
+
+    console.log('results:', result.results);
 
     const mappedTxs = mapResultsFromTx(result.results);
-    console.log(result.results);
-    console.log(`fetched ${result.results.length} transactions`);
-    console.log(`mapped ${mappedTxs.length} transactions`);
     setTxs(mappedTxs);
   };
 
@@ -95,6 +93,7 @@ export default function Coffee() {
     const postConditionAddress = userSession.loadUserData().profile.stxAddress.testnet;
     const postConditionCode = FungibleConditionCode.LessEqual;
     const postConditionAmount = price * ONE_MILLION;
+
     const postConditions = [
       makeStandardSTXPostCondition(
         postConditionAddress,
@@ -202,8 +201,17 @@ export default function Coffee() {
           <div className="mt-4 sm:mt-0">
             <Card>
               <div className="p-8 items-center text-center mx-auto w-full">
-                <div className="font-semibold text-lg mb-4 text-left">
-                  Buy <span className="font-bold text-blue-500">Tuan</span> a stack coffee
+                <div className="flex justify-between">
+                  <div className="font-semibold text-lg mb-4 text-left">
+                    Buy <span className="font-bold text-blue-500">Tuan</span> a stack
+                    coffee
+                  </div>
+
+                  <div>
+                    <div className="ml-2 rounded-lg capitalize inline-flex bg-blue-500 px-2 py-0.5 text-xs font-semibold text-white">
+                      {process.env.NEXT_PUBLIC_NETWORK || 'testnet'}
+                    </div>
+                  </div>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-2">
                   <div className="flex space-x-4   items-center bg-blue-50 border-blue-200 border rounded p-4">
@@ -245,8 +253,10 @@ export default function Coffee() {
 
 const SelectItem = ({ price, currentValue, setPrice }) => (
   <div
-    className={`font-semibold bg-white flex items-center  border justify-center w-8 h-8 rounded-full  cursor-pointer ${
-      price == currentValue ? 'bg-blue-500 text-white' : 'text-blue-500 border-blue-100'
+    className={`font-semibold  flex items-center border justify-center w-8 h-8 rounded-full cursor-pointer ${
+      price == currentValue
+        ? 'bg-blue-500 text-white'
+        : 'text-blue-500 bg-white border-blue-100'
     }`}
     onClick={() => setPrice(currentValue)}
   >

@@ -10,8 +10,8 @@ plan:
       transactions:
         - contract-publish:
             contract-name: coffee
-            expected-sender: ST2PNJSEDHK8HZ0DE44JDT9T2Q429D86F4J94JTQY
-            cost: 8900
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            cost: 7900
             path: contracts/coffee.clar
             anchor-block-only: true
             clarity-version: 1

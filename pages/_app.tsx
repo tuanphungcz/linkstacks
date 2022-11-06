@@ -5,8 +5,7 @@ import 'styles/globals.css';
 
 export default function App({ Component, pageProps }: any) {
   useLogRocket();
-  console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-  console.log('process.env.NEXT_PUBLIC_UMAMI_ID', process.env.NEXT_PUBLIC_UMAMI_ID);
+
   return (
     <>
       <Head>

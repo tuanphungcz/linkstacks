@@ -2,7 +2,7 @@
 id: 0
 name: Testnet deployment
 network: testnet
-stacks-node: "https://stacks-node-api.testnet.stacks.co"
+stacks-node: "https://stacks-node-api.mainnet.stacks.co"
 bitcoin-node: "http://blockstack:blockstacksystem@bitcoind.testnet.stacks.co:18332"
 plan:
   batches:
@@ -11,7 +11,7 @@ plan:
         - contract-publish:
             contract-name: coffee
             expected-sender: ST2PNJSEDHK8HZ0DE44JDT9T2Q429D86F4J94JTQY
-            cost: 8900
+            cost: 7900
             path: contracts/coffee.clar
             anchor-block-only: true
             clarity-version: 1
