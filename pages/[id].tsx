@@ -16,8 +16,7 @@ export default function Stacks() {
     if (id?.length > 0 && !profile) {
       console.log('fetching profile', id);
 
-      const bns = id.includes('.btc') ? id : id + '.btc';
-      fetchProfile(bns).then(({ profile }: any) => {
+      fetchProfile(id).then(({ profile }: any) => {
         console.log(profile);
         setProfile(profile);
       });
