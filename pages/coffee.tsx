@@ -39,7 +39,7 @@ export default function Coffee() {
 
   const handleMessageChange = e => setMessage(e.target.value);
   const handleNameChange = e => setName(e.target.value);
-  const handlePriceChange = e => setPrice(e.target.value);
+  const handlePriceChange = e => setPrice(Math.floor(e.target.value));
 
   const getCoffeeMessages = async () => {
     // https://docs.hiro.so/api#tag/Accounts/operation/get_account_transactions
