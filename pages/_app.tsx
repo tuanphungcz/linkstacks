@@ -5,20 +5,19 @@ import 'styles/globals.css';
 
 export default function App({ Component, pageProps }: any) {
   useLogRocket();
+  console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+  console.log('process.env.NEXT_PUBLIC_UMAMI_ID', process.env.NEXT_PUBLIC_UMAMI_ID);
   return (
     <>
       <Head>
-        <title>Linkstacks</title>
-
-        {typeof window !== 'undefined' &&
-          process.env.NODE_ENV === 'production' &&
-          process.env.NEXT_PUBLIC_UMAMI_ID && (
-            <script
-              defer
-              data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
-              src="https://umami-nu.vercel.app/umami.js"
-            />
-          )}
+        <title>LinkStacks</title>
+        {process.env.NEXT_PUBLIC_UMAMI_ID && (
+          <script
+            defer
+            data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
+            src="https://umami-nu.vercel.app/umami.js"
+          />
+        )}
       </Head>
       <Toaster />
       <Component {...pageProps} />

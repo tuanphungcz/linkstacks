@@ -8,10 +8,10 @@ import { fetchTasks, saveTasks } from 'lib/storage';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import AppNavbar from './AppNavbar';
 import Container from './base/Container';
 import NewTabLink from './base/NewTabLink';
 import ConfettiCanvas from './ConfettiCanvas';
-import AppNavbar from './Navbar';
 import ProfileCard from './ProfileCard';
 
 const INITIAL_PROFILE = {
@@ -70,7 +70,7 @@ export default function EditForm() {
   return (
     <>
       <AppNavbar />
-      <Container small>
+      <Container >
         <div className=" space-y-8 pt-16 mb-32">
           <div className="mx-auto">
             <div className="text-lg font-medium leading-6 text-gray-900 flex space-x-2">

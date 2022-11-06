@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { PrimaryButton, SecondaryButton } from './base/Button';
 import Container from './base/Container';
 import NewTabLink from './base/NewTabLink';
-import AppNavbar from './Navbar';
+import AppNavbar from './AppNavbar';
 
 export default function HeroLanding() {
   return (

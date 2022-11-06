@@ -1,8 +1,7 @@
 import Card from 'components/base/Card';
 import Socials from 'components/Socials';
-import Container from './base/Container';
 
-export default function ProfileCard({ profile, bns }: any) {
+export default function ProfileCard({ profile }: any) {
   return (
     <Card>
       <div className="p-8 flex flex-col justify-center items-center text-center max-w-md mx-auto">

@@ -1,4 +1,4 @@
-import { StacksMainnet } from '@stacks/network';
+import { StacksMainnet, StacksMocknet, StacksTestnet } from '@stacks/network';
 import { AppConfig, UserSession, showConnect } from '@stacks/connect';
 import { Person } from '@stacks/profile';
 
@@ -19,9 +19,9 @@ export function authenticate() {
     },
     redirectTo: '/edit',
     onFinish: () => {
-      window.location.href = '/edit';
+      window.location.reload();
     },
-    userSession: userSession
+    userSession
   });
 }
 
@@ -49,4 +49,32 @@ export const fetchFirstName = async (
     }
   } catch (e) {}
   return undefined;
+};
+
+const mainnet = new StacksMainnet();
+const testnet = new StacksTestnet();
+const devnet = new StacksMocknet();
+
+export const getNetworkConfig = () => {
+  if (process.env.NEXT_PUBLIC_NETWORK === 'mainnet') {
+    return {
+      network: mainnet,
+      explorerUrl: 'https://explorer.stacks.co',
+      contractAddress: 'SP2PNJSEDHK8HZ0DE44JDT9T2Q429D86F4KJ9J5NM'
+    };
+  }
+
+  if (process.env.NEXT_PUBLIC_NETWORK === 'testnet') {
+    return {
+      network: testnet,
+      explorerUrl: 'https://explorer.stacks.co',
+      contractAddress: 'ST2PNJSEDHK8HZ0DE44JDT9T2Q429D86F4J94JTQY'
+    };
+  }
+
+  return {
+    network: devnet,
+    explorerUrl: 'http://localhost:8000',
+    contractAddress: 'ST2PNJSEDHK8HZ0DE44JDT9T2Q429D86F4J94JTQY'
+  };
 };
